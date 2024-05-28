@@ -44,9 +44,10 @@ body * {
     color: var(--text-color);
 }
 
+
+
+
 /* Transição na mudança de tema */
-
-
 
 html, body {
     height: 100%;
@@ -94,6 +95,9 @@ html, body {
 
 
 
+
+
+/* CONTAINER (abriga profile, botão, listas, socialLinks e footer) */
 
 
 #container {
@@ -167,13 +171,21 @@ html, body {
     left: 0;
     z-index: 2;
     transform: translateY(-50%);
+    animation: slide-out .4s;
+    /* Não precisa do foward pq manter na posição final é mantes no left 0 e o left 0 ja é o padrão */
+
+
     /* Para centralizar o botão dentro do span foi criada a posição absolute que torna possivel a manipulação de camadas eixo Z e da position relative no pai(switch) faz com que seja posivel manipulações como rotate, além da translateY(-50%) que coloca o botão para cima e depois com top:50% ajusta para centralizar o mesmo */
     
 }
 
 .light #switch button {
-    right: 0;
-    left: initial;
+    animation: slide-in .4s forwards;
+}
+
+#switch button:hover {
+    cursor: pointer;
+    outline: 8px solid var(--highlight-color);
 }
 
 #switch span {
@@ -290,6 +302,9 @@ footer a {
         --bg-url: url('assets/bg-desktop-light.jpg');
     }
 } */
+
+
+/* Media queries significa mudanças que vão acontecer devido algo no caso quando width ultrapassar 700px isso acontece */
 @media (min-width: 700px) {
     #bg1 {
         background-image: url('assets/bg-desktop.jpg');
@@ -300,5 +315,27 @@ footer a {
     }
 }
 
+
+/* animation switch */
+@keyframes slide-in {
+    from {
+        left: 0;
+    }
+
+    to{
+        left: 50%;
+    }
+}
+
+@keyframes slide-out {
+    from {
+        left: 50%;
+    }
+
+    to{
+        left: 0;
+    }
+    
+}
 
 
