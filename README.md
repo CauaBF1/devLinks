@@ -1,5 +1,5 @@
 # Aprensetação
-Meu nome é Cauã Borges estudante do primeiro período de ciência da computação na universidade federal de São Carlos
+Meu nome é Cauã Borges, sou estudante do primeiro período de Ciência da Computação na Universidade Federal de São Carlos.
 
 # Meu Primeiro Projeto
 
