@@ -1,0 +1,266 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+
+    --text-color:white;
+    --bg-url: url('assets/bg-mobile.jpg');
+    --stroke-color: rgba(255, 255, 255, 0.5);
+    --surface-color: rgba(255, 255, 255, 0.1);
+    --surface-color-hover: rgba(255, 255, 255, 0.05);
+    --highlight-color: rgba(255, 255, 255, 0.2);
+    --switch-bg-url: url('assets/moon-stars.svg');
+}
+.light {
+
+    --text-color: black;
+    --bg-url: url('assets/bg-mobile-light.jpg');
+    --stroke-color: rgba(0, 0, 0, 0.5);
+    --surface-color: rgba(0, 0, 0, 0.05);
+    --surface-color-hover: rgba(0, 0, 0, 0.02);
+    --highlight-color: rgba(0, 0, 0, 0.1);
+    --switch-bg-url: url('assets/sun.svg');
+}
+
+/* :root, .light {
+    transition: var(--text-color) .2s ease, var(--stroke-color) .2s ease, var(--surface-color) .2s ease, var(--surface-color-hover) .2s ease, var(--highlight-color) .2s ease;
+} */
+
+body {
+    /* background-image: url('assets/bg-mobile.jpg');
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover; */
+    
+    /* background: color image repeat position/size; */
+    background: var(--bg-url) no-repeat top center / cover;
+}
+body * {
+    font-family: 'Inter', sans-serif;
+    color: white;
+    color: var(--text-color);
+}
+
+/* Transição na mudança de tema */
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+.bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: opacity .4s ease-in-out;
+    z-index: 1;
+    /* foi criada duas divs 1 para tema dark outra para light, ambas ocupam a tela inteira e tem uma transição de 0.3 segundos, porem essas divs encima de tudo fez com que as outras coisas sumissem, para isso tanto a div#profile, a div#switch, a ul a div#socialLinks e o footer receberam position relative para mudar o z-index para 2 ficando encimas das Bg que receberam position absolute no z-index:1 */
+}
+
+#bg1 {
+    background-image: url('assets/bg-mobile.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 1;
+}
+
+#bg2 {
+    background-image: url('assets/bg-mobile-light.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0;
+}
+
+.light #bg1 {
+    opacity: 0;
+}
+
+.light #bg2 {
+    opacity: 1;
+}
+
+#container {
+    width: 360px;
+    /* margin-top: 56px;
+    margin-right: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+     Tudo pode ser resumido a margin: 56px auto */
+    margin: 0px auto 0px auto;
+    /* margin 56px auto(aplica 56 para cima e baixo e auto para as laterais)
+       margin: 56px auto 0px(aplica 56 p cima auto p laterias e 0xp para baix) */
+
+    /* Alterei a margin-top do container para 0 para que o mesmo pegue todo o body e a transição com sobreposição de imagens ocorra */
+    padding: 0 24px;
+ 
+
+}
+
+
+
+
+
+
+
+/* Profile */
+#profile {
+    text-align: center;
+    padding: 24px;
+    position: relative;
+    z-index: 2;
+}
+
+#profile img {
+    /*Consigo centralizar a imagem definindoa como block e margem auto 
+    Mesma coisa de colocar text-align center no profile*/ 
+    width: 112px;
+}
+#profile p {
+    font-weight: 500;
+    /* font-size: 16px; (padrão) */
+    line-height: 24px;
+    margin-top: 8px;
+}
+
+
+/* Switch */
+
+#switch {
+    position: relative;
+    width: 64px;
+    z-index: 2;
+    margin: 4px auto;
+    /* display block é centralizado com ma rgin 0 auto */
+    /* position absoute é cemtralizado com mudanças abaixo */
+    /* display flex com aling item e justify content */
+    /* Texto é através do text-aling */
+}
+
+
+#switch button {
+    width: 32px;
+    height: 32px;
+    background: white var(--switch-bg-url) no-repeat center;
+    border: 0;
+    border-radius: 50%;
+
+    position: absolute;
+    top: 50%;
+    left: 0;
+    z-index: 2;
+    transform: translateY(-50%);
+    /* Para centralizar o botão dentro do span foi criada a posição absolute que torna possivel a manipulação de camadas eixo Z e da position relative no pai(switch) faz com que seja posivel manipulações como rotate, além da translateY(-50%) que coloca o botão para cima e depois com top:50% ajusta para centralizar o mesmo */
+    
+}
+
+.light #switch button {
+    right: 0;
+    left: initial;
+}
+
+#switch span {
+    /* position: relative;
+    z-index: 1; */
+    display: block;
+    width: 64px;
+    height: 24px;
+    background: var(--surface-color);
+    border: 1px solid var(--stroke-color);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 9999px;
+}
+
+
+
+
+
+
+
+/* links - lista */
+ul {
+    list-style: none;
+    /* display: flex;
+    flex-direction: column   flex-direction: row;   row é o padrão significa lado a lado column encima do outro
+    gap: 8px     gap é a distância entre os elementos ; */
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px 0;
+    position: relative;
+    z-index: 2;
+}
+
+ul li a {
+    display: flex;
+    align-items: center; /*eixo y*/
+    justify-content: center; /*eixo x*/
+
+    padding: 16px 24px;
+
+    background: var(--surface-color);
+    border: 1px solid var(--stroke-color);
+    border-radius: 8px;
+
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    /*    -webkit-backdrop-filter: blur(4px); para que funcione em alguns navegadores que so suportam o backdropFilter caso tenha esse webkit*/
+
+    font-weight: 500;
+    text-decoration: none;
+
+    transition: background .2s;
+}
+
+ul li a:hover {
+    background: var(--surface-color-hover);
+    border: 1.5px solid var(--text-color);
+}
+
+/* Social Links */
+#socialLinks {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+
+    padding: 24px 0;
+    font-size: 24px;
+}
+/* #socialLinks ion-icon {
+    margin: 10px;
+} */
+
+#socialLinks a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+
+    transition: background .2s;
+    border-radius: 50%;
+}
+
+#socialLinks a:hover {
+    background: var(--highlight-color);
+}
+
+/* footer */
+
+footer {
+    position: relative;
+    z-index: 2;
+    padding: 24px 0;
+    text-align: center;
+    font-size: 14px;
+}
+footer a {
+    text-decoration: none;
+}
+
+
+
+
